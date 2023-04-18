@@ -35,4 +35,5 @@ def extract_videos_data(soup):
             "Thumbnail": thumbnail
         }
         extracting_data.append(video_data)
+
     return extracting_data
