@@ -3,11 +3,9 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
 
-
 page_url = input('Please enter your YouTube URL: ')
 
 driver = webdriver.Chrome()
-# driver = webdriver.Chrome(executable_path="chromedriver")
 driver.get(page_url)
 
 scroll_to_page_end(driver)
