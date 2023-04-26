@@ -14,13 +14,17 @@ def scroll_to_page_end(driver):
 
 def extract_videos_data(soup):
     video_elements = soup.find_all('ytd-rich-item-renderer')
-    videos_data = []
+    extracting_data = []
 
     for videos in video_elements:
         title = videos.find("yt-formatted-string", {"id": "video-title"}).text
         views = videos.find('span', {"class": "inline-metadata-item style-scope ytd-video-meta-block"}).text
-        video_duration = videos.find('span', {"class": "style-scope ytd-thumbnail-overlay-time-status-renderer"}).text.strip()
-        uploaded_at = videos.find('div', {"class": "style-scope ytd-video-meta-block"}).text.strip().split('\n')[-1::-3][0]
+        video_duration = videos.find(
+                'span', {"class": "style-scope ytd-thumbnail-overlay-time-status-renderer"}
+            ).text.strip()
+        uploaded_at = videos.find(
+            'div', {"class": "style-scope ytd-video-meta-block"}
+        ).text.strip().split('\n')[-1::-3][0]
         thumbnail = videos.find('img', {"style": "background-color: transparent;"}).get('src')
 
         video_data = {
@@ -30,5 +34,6 @@ def extract_videos_data(soup):
             "Uploaded_at": uploaded_at,
             "Thumbnail": thumbnail
         }
-        videos_data.append(video_data)
-    return videos_data
+        extracting_data.append(video_data)
+
+    return extracting_data
